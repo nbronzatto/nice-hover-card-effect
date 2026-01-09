@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards Responsivos com Tilt</title>
+
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --dark-blue: #003d80;
+            --text-light: #ffffff;
+        }
+
+        body {
+            font-family: 'Courier New', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+            max-width: 1200px;
+        }
+
+        /* Card */
+        .card-container {
+            width: 250px;
+            height: 200px;
+            padding: 10px; /* margem interna de segurança */
+            cursor: pointer;
+            perspective: 1000px;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.1s ease-out;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .bg-primary {
+            background-color: var(--primary-color);
+        }
+
+        .bg-dark-blue {
+            background-color: var(--dark-blue);
+        }
+
+        .card-body {
+            text-align: center;
+            color: var(--text-light);
+            padding: 1rem;
+            box-sizing: border-box;
+            pointer-events: none;
+        }
+
+        .card-body p {
+            margin: 0;
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
+            opacity: 0.9;
+        }
+
+        .card-body h1 {
+            margin: 8px 0;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            line-height: 1.2;
+        }
+
+        .card-body span {
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            display: block;
+        }
+
+        .card-container:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Ajuste mobile */
+        @media (max-width: 480px) {
+            .card-container {
+                height: auto;
+                min-height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card-container bg-primary" data-tilt>
+        <div class="card-body">
+            <p>A estrela mais próxima</p>
+            <h1>4,24 anos-luz</h1>
+            <span>é a distância de Proxima Centauri</span>
+        </div>
+    </div>
+
+    <div class="card-container bg-dark-blue" data-tilt>
+        <div class="card-body">
+            <p>Estrelas semelhantes ao Sol</p>
+            <h1>5–10%</h1>
+            <span>da Via Láctea são do tipo G</span>
+        </div>
+    </div>
+
+    <div class="card-container bg-primary" data-tilt>
+        <div class="card-body">
+            <p>A estrela mais parecida</p>
+            <h1>Alpha Centauri A</h1>
+            <span>é um dos melhores “gêmeos” do Sol</span>
+        </div>
+    </div>
+
+    <div class="card-container bg-dark-blue" data-tilt>
+        <div class="card-body">
+            <p>Estrelas como o Sol vivem</p>
+            <h1>~10 bilhões</h1>
+            <span>de anos em média</span>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+<script>
+    VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+        max: 25,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.5,
+        scale: 1.05
+    });
+</script>
+
+</body>
+</html>
